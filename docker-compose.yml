@@ -30,9 +30,12 @@ services:
     ports:
       - 8080:5000
   db:
-    image: mongo:latest
-    volumes:
-      - $DATABASE_PATH:/data/db
+    image: mongodb
+    build:
+      context: .
+      dockerfile: db/Dockerfile
+      args:
+        BASE_DIR: ./db
     ports:
       - 27017:27017
     networks:
