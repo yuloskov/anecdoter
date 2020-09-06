@@ -1,0 +1,43 @@
+version: '3.1'
+services:
+  nginx:
+    image: nginx:latest
+    build:
+      context: .
+      dockerfile: nginx/Dockerfile
+    container_name: nginx_reverseproxy
+    depends_on:
+      - web
+    networks:
+      - docker-network
+    ports:
+      - 80:80
+  web:
+    build:
+      context: .
+      dockerfile: web/Dockerfile
+      args:
+        BASE_DIR: ./web
+    image: flask:v1
+    container_name: flask_webapp
+    environment:
+      - FLASK_APP=application/main.py
+    command: python application/main.py
+    networks:
+      docker-network:
+        aliases:
+          - flask_webapp
+    ports:
+      - 8080:5000
+  db:
+    image: mongo:latest
+    volumes:
+      - $DATABASE_PATH:/data/db
+    ports:
+      - 27017:27017
+    networks:
+      docker-network:
+        aliases:
+          - db
+networks:
+  docker-network:

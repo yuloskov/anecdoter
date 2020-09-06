@@ -1,0 +1,31 @@
+## PyCharm ##
+.idea/
+
+## VsCode ##
+.vscode/
+
+## Mac ##
+.DS_Store
+
+## Vim ##
+*.sw[op]
+
+## Python ##
+__pycache__/
+*.py[cod]
+venv/
+records/
+identifier/model
+identifier/test_folder
+train_dir/
+
+## Rope Project ##
+.ropeproject/
+
+## Docker ##
+
+## Node ##
+node_modules/
+
+## Environment ##
+.env

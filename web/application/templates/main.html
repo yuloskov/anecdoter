@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <link rel="stylesheet" href="/static/css/main.css">
+  <link rel="shortcut icon" href="/static/img/favicon.jpg" type="image/x-icon">
+  <meta charset="UTF-8">
+  <title>Anecdoter</title>
+</head>
+<body>
+<div>
+ <div id="cover">
+  <form method="get" action="{{url_for('get_joke')}}">
+    <div class="tb">
+      <div class="td"><input type="text" id="keywords" name="keywords" placeholder="joke keywords" required></div>
+      <div class="td" id="s-cover">
+        <button type="submit">
+          <div id="s-circle"></div>
+          <span></span>
+        </button>
+      </div>
+    </div>
+  </form>
+</div>
+  <!--  <form method="get" action="{{url_for('get_joke')}}">-->
+  <!--    <label for="keywords">Enter keywords to find a joke</label>-->
+  <!--    <input type="text" id="keywords" name="keywords">-->
+  <!--    <input type="submit" value="Submit">-->
+  <!--  </form>-->
+</div>
+<div class="jokes">
+    {% for joke in jokes %} {% set text = joke['joke'] %}
+    <p> {{text}} </p>
+    <hr>
+    {% endfor %}
+</div>
+</body>
+</html>
