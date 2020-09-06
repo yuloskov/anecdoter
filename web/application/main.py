@@ -15,7 +15,8 @@ jokes = db.jokes
 @app.route('/')
 def hello():
     return render_template(
-        'main.html'
+        'main.html',
+        no_searches=True,
     )
 
 
@@ -30,6 +31,7 @@ def get_joke():
     return render_template(
         'main.html',
         jokes=found_jokes[0:-1],
+        no_searches=False,
     )
 
 

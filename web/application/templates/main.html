@@ -8,30 +8,38 @@
 </head>
 <body>
 <div>
- <div id="cover">
-  <form method="get" action="{{url_for('get_joke')}}">
-    <div class="tb">
-      <div class="td"><input type="text" id="keywords" name="keywords" placeholder="joke keywords" required></div>
-      <div class="td" id="s-cover">
-        <button type="submit">
-          <div id="s-circle"></div>
-          <span></span>
-        </button>
+  <div class="rjaka">
+    <img src="/static/img/rjekich.png">
+  </div>
+  <div id="cover">
+    <form method="get" action="{{url_for('get_joke')}}">
+      <div class="tb">
+        <div class="td"><input type="text" id="keywords" name="keywords" placeholder="joke keywords" required></div>
+        <div class="td" id="s-cover">
+          <button type="submit">
+            <div id="s-circle"></div>
+            <span></span>
+          </button>
+        </div>
       </div>
-    </div>
-  </form>
-</div>
-  <!--  <form method="get" action="{{url_for('get_joke')}}">-->
-  <!--    <label for="keywords">Enter keywords to find a joke</label>-->
-  <!--    <input type="text" id="keywords" name="keywords">-->
-  <!--    <input type="submit" value="Submit">-->
-  <!--  </form>-->
-</div>
-<div class="jokes">
+    </form>
+  </div>
+  <div class="num_of_results">
+    {% if not no_searches and jokes|length == 0 %}
+    No results
+    {% endif %}
+    {% if jokes|length > 0 %}
+    Found {{jokes|length}} jokes
+    {% endif %}
+  </div>
+  <div class="jokes">
     {% for joke in jokes %} {% set text = joke['joke'] %}
-    <p> {{text}} </p>
-    <hr>
+    <div class="joke">
+      <p> {{text}} </p>
+      <hr>
+    </div>
     {% endfor %}
+  </div>
 </div>
 </body>
 </html>
