@@ -31,12 +31,16 @@ input, button {
     background-color: transparent;
 }
 
+.search {
+    width: 1000px;
+    margin: 0 auto;
+}
+
 #cover {
     position: relative;
     top: 100px;
     left: 0;
     right: 0;
-    width: 1000px;
     padding: 35px;
     margin: -83px auto 0 auto;
     background-color: #494343;
@@ -187,13 +191,23 @@ hr {
     background-image: -o-linear-gradient(left, #fff, #000, #fff);
 }
 
-.num_of_results {
+.search_results_info {
+    padding: 0 200px;
     position: relative;
     top: 90px;
-    text-align: center;
-    margin-right: 500px;
     color: #b6b6b6;
     font-size: 14px;
+
+}
+
+.num_of_results {
+    float: left;
+    text-align: left;
+}
+
+.page_results {
+    float: right;
+    text-align: right;
 }
 
 .rjaka {
