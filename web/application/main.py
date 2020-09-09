@@ -25,7 +25,7 @@ def search_joke(keywords, page):
     offset = page * page_size
     res = list(jokes.find({"$text": {"$search": keywords}}).skip(offset).limit(
         page_size + 1))
-    return res[:-1], len(res) > page_size
+    return res[:min(page_size, len(res))], len(res) > page_size
 
 
 @app.route('/get_joke', methods=['GET'])
