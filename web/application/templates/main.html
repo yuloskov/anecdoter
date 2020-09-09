@@ -9,55 +9,60 @@
 </head>
 
 <body>
-  <div>
+<div>
+  <a href="/">
     <div class="rjaka">
       <img src="/static/img/rjekich.png">
     </div>
-    <div class="search">
-      <div id="cover">
-        <form method="get" action="{{url_for('get_joke')}}">
-          <div class="tb">
-            <div class="td"><input type="text" id="keywords" name="keywords" placeholder="joke keywords" required></div>
-            <div class="td" id="s-cover">
-              <button type="submit">
-                <div id="s-circle"></div>
-                <span></span>
-              </button>
-            </div>
+  </a>
+  <div class="search">
+    <div id="cover">
+      <form method="get" action="{{url_for('get_joke')}}">
+        <div class="tb">
+          <div class="td"><input type="text" id="keywords" name="keywords" placeholder="joke keywords" required></div>
+          <div class="td" id="s-cover">
+            <button type="submit">
+              <div id="s-circle"></div>
+              <span></span>
+            </button>
           </div>
-        </form>
-      </div>
-      <div class="search_results_info">
-        <div class="num_of_results">
-          {% if not no_searches and jokes|length == 0 %}
-          No results
-          {% endif %}
-          {% if jokes|length > 0 %}
-          Showing {{jokes|length}} jokes
-          {% endif %}
         </div>
-        <div class="page_results">
-          {% if not no_searches and jokes|length == 0 %}
-          0 pages
-          {% endif %}
-          {% if jokes|length > 0 %}
-          Page: 
-          {% if page > 0 %}<a href="{{url_for('get_joke', page=page-1, keywords=keywords)}}">{{page-1}}</a> {% endif %}
-          {{page}}
-          {% if next_page %} <a href="{{url_for('get_joke', page=page+1, keywords=keywords)}}">{{page+1}}</a>{% endif %}
-          {% endif %}
-        </div>
-      </div>
+      </form>
     </div>
-    <div class="jokes">
-      {% for joke in jokes %} {% set text = joke['joke'] %}
-      <div class="joke">
-        <p> {{text}} </p>
-        <hr>
+    <div class="add_joke">
+      <a href="/add_joke" class="add_joke_btn">Add joke</a>
+    </div>
+    <div class="search_results_info">
+      <div class="num_of_results">
+        {% if not no_searches and jokes|length == 0 %}
+        No results
+        {% endif %}
+        {% if jokes|length > 0 %}
+        Showing {{jokes|length}} jokes
+        {% endif %}
       </div>
-      {% endfor %}
+      <div class="page_results">
+        {% if not no_searches and jokes|length == 0 %}
+        0 pages
+        {% endif %}
+        {% if jokes|length > 0 %}
+        Page:
+        {% if page > 0 %}<a href="{{url_for('get_joke', page=page-1, keywords=keywords)}}">{{page-1}}</a> {% endif %}
+        {{page}}
+        {% if next_page %} <a href="{{url_for('get_joke', page=page+1, keywords=keywords)}}">{{page+1}}</a>{% endif %}
+        {% endif %}
+      </div>
     </div>
   </div>
+  <div class="jokes">
+    {% for joke in jokes %} {% set text = joke['joke'] %}
+    <div class="joke">
+      <p> {{text}} </p>
+      <hr>
+    </div>
+    {% endfor %}
+  </div>
+</div>
 </body>
 
 </html>

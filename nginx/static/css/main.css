@@ -223,3 +223,39 @@ img {
     height: 100%;
     object-fit: contain;
 }
+
+.add_joke {
+    position: absolute;
+    margin-left: 850px;
+    text-align: right;
+}
+
+.add_joke_btn {
+    cursor: pointer;
+    outline: none;
+    border-radius: 15px;
+    box-shadow: 0 9px #999;
+
+    background-color: #767676;
+    border: none;
+    color: white;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+
+    -webkit-appearance: button;
+    -moz-appearance: button;
+    appearance: button;
+}
+
+add_joke_btn:hover {
+    background-color: #3e3e3e
+}
+
+.add_joke_btn:active {
+    background-color: #767676;
+    box-shadow: 0 5px #666;
+    transform: translateY(4px);
+}
