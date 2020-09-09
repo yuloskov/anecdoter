@@ -1,7 +1,7 @@
-version: '3.1'
+version: '3.8'
 services:
   nginx:
-    image: nginx:latest
+    image: kirillfedoseev/nginx_reverseproxy:v1
     build:
       context: .
       dockerfile: nginx/Dockerfile
@@ -12,13 +12,16 @@ services:
       - docker-network
     ports:
       - 80:80
+    deploy:
+      mode: replicated
+      replicas: 3
   web:
+    image: kirillfedoseev/flask:v1
     build:
       context: .
       dockerfile: web/Dockerfile
       args:
         BASE_DIR: ./web
-    image: flask:v1
     container_name: flask_webapp
     environment:
       - FLASK_APP=application/main.py
@@ -27,20 +30,25 @@ services:
       docker-network:
         aliases:
           - flask_webapp
-    ports:
-      - 8080:5000
+    deploy:
+      mode: replicated
+      replicas: 3
   db:
-    image: mongodb
+    image: kirillfedoseev/mongodb:v1
     build:
       context: .
       dockerfile: db/Dockerfile
       args:
         BASE_DIR: ./db
-    ports:
-      - 27017:27017
     networks:
       docker-network:
         aliases:
           - db
+    deploy:
+      mode: replicated
+      replicas: 1
+      placement:
+        constraints:
+          - "node.labels.db==true"
 networks:
   docker-network:
